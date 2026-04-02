@@ -1,4 +1,6 @@
-interface Editora {
+import { Livro } from "./livro";
+
+export interface Editora {
     id: number;
     nome: string;
     endereco: string;
