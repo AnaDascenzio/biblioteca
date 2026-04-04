@@ -1,5 +1,3 @@
-// EditoraService.ts - Lógica de negócio de Editora
-
 import { Editora } from "../entities/editora";
 import { EditoraRepository } from "../repositories/editoraRepository";
 import { EditoraValidator } from "./validator/editoraValidator";
@@ -14,19 +12,19 @@ export class EditoraService {
   }
 
   public async criar(dados: Partial<Editora>): Promise<Editora> {
-    console.log('📖 Service: Criando editora com validações');
+    console.log('Service: Criando editora com validações');
     this.editoraValidator.validarEditora(dados as Editora);
     
     return await this.editoraRepository.criar(dados);
   }
 
   public async buscarTodas(): Promise<Editora[]> {
-    console.log('📚 Service: Buscando todas as editoras');
+    console.log('Service: Buscando todas as editoras');
     return await this.editoraRepository.buscarTodas();
   }
 
   public async buscarPorId(id: string): Promise<Editora> {
-    console.log(`🔍 Service: Buscando editora ${id}`);
+    console.log(`Service: Buscando editora ${id}`);
 
     const editora = await this.editoraRepository.buscarPorId(id);
 
@@ -47,9 +45,9 @@ export class EditoraService {
 
   public async atualizar(
     id: string,
-    dados: Partial<Editora>
+    dados: Pick<Editora, 'nome' | 'endereco'> // Só permite atualizar nome e endereço, com o partial permitia atualizar o ID
   ): Promise<Editora | null> {
-    console.log(`✏️ Service: Atualizando editora ${id}`);
+    console.log(`Service: Atualizando editora ${id}`);
 
     // Verifica se editora existe
     await this.buscarPorId(id);
@@ -77,7 +75,7 @@ export class EditoraService {
       throw new Error('Erro ao deletar editora');
     }
 
-    console.log(`✅ Editora ${editora.nome} deletada com sucesso`);
+    console.log(`Editora ${editora.nome} deletada com sucesso`);
   }
 
   public async contarLivros(id: string): Promise<number> {

@@ -14,7 +14,6 @@ export class Editora {
   @Column({ type: 'varchar', length: 255, nullable: true })
   endereco?: string;
 
-  // Relacionamento: uma editora pode ter muitos livros
   @OneToMany(() => Livro, (livro) => livro.editora)
   livros: Livro[];
 
