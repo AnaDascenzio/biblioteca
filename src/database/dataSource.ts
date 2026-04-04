@@ -1,6 +1,4 @@
-// dataSource.ts - Configuração de conexão com PostgreSQL
-
-import 'reflect-metadata'; // SEMPRE primeira linha!
+import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import { Livro } from '../entities/livro';
@@ -17,7 +15,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'biblioteca_db',
-  synchronize: true, // Auto-cria tabelas baseado nas entities (APENAS desenvolvimento!)
+  synchronize: true, // Auto-cria tabelas baseado nas entities
   logging: true, // Mostra as queries SQL no console
   entities: [Livro, Editora],
 });
@@ -26,9 +24,9 @@ export const AppDataSource = new DataSource({
 export async function conectarBanco() {
   try {
     await AppDataSource.initialize();
-    console.log('✅ Conectado ao PostgreSQL com sucesso!');
+    console.log('Conectado ao PostgreSQL com sucesso!');
   } catch (erro) {
-    console.error('❌ Erro ao conectar:', erro);
+    console.error('Erro ao conectar:', erro);
     throw erro;
   }
 }

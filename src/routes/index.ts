@@ -1,17 +1,11 @@
-// routes/index.ts - Todas as rotas da API
-
 import { Router } from 'express';
 import { LivroController } from '../controllers/livroController';
 import { EditoraController } from '../controllers/editoraController';
 
-// Cria o roteador
 const router = Router();
 
-// Cria instâncias dos controllers
 const livroController = new LivroController();
 const editoraController = new EditoraController();
-
-// ===== ROTAS DE LIVRO =====
 
 // POST /api/livros - Criar livro
 router.post('/livros', (req, res) => livroController.criar(req, res));

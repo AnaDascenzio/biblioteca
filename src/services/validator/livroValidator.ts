@@ -18,7 +18,7 @@ export class LivroValidator {
 
         // Validação 9: Editora deve existir
         this.validarEditoraId(livro.editoraId);
-        console.log('✅ Dados do livro validados com sucesso');
+        console.log('Dados do livro validados com sucesso');
     }
 
     private validarTitulo(titulo: string): void {

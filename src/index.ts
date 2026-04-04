@@ -11,18 +11,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.API_PORT || 3000;
 
-// ===== MIDDLEWARES =====
 
-// Middleware para parsear JSON
 app.use(express.json());
 
-// Middleware para log de requisições
 app.use((req, res, next) => {
-  console.log(`\n📨 ${req.method} ${req.path}`);
+  console.log(`\n ${req.method} ${req.path}`);
   next();
 });
 
-// ===== ROTAS =====
 
 // Health check
 app.get('/health', (req, res) => {
@@ -35,7 +31,6 @@ app.get('/health', (req, res) => {
 // Rotas da API
 app.use('/api', routes);
 
-// ===== INICIAR SERVIDOR =====
 
 async function iniciar() {
   try {
